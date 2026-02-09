@@ -42,17 +42,25 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
     "/startScan",
     async (request: FastifyRequest<{ Body: StartScanBody }>, reply: FastifyReply) => {
       const body = request.body;
-      if (!body || !VALID_BODY_PARTS.includes(body.bodyPart)) {
+      const state = getScanState();
+      if (state.inProgress) {
         return reply.status(400).send({
           success: false,
           errorCode: 1001,
+          message: "Scan already in progress"
+        });
+      }
+      if (!body || !VALID_BODY_PARTS.includes(body.bodyPart)) {
+        return reply.status(400).send({
+          success: false,
+          errorCode: 1002,
           message: "Invalid or missing bodyPart."
         });
       }
       if (body.side && !VALID_SIDES.includes(body.side)) {
         return reply.status(400).send({
           success: false,
-          errorCode: 1002,
+          errorCode: 1003,
           message: "Invalid side. Must be LEFT or RIGHT."
         });
       }
