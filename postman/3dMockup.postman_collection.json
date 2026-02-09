@@ -1,0 +1,81 @@
+{
+  "info": {
+    "name": "3dMockup API",
+    "description": "Postman collection for the 3dMockup mock scanner API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Device Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/getDeviceStatus",
+          "host": ["{{baseUrl}}"],
+          "path": ["getDeviceStatus"]
+        }
+      }
+    },
+    {
+      "name": "Start Scan",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"bodyPart\": \"FOOT\",\n  \"side\": \"LEFT\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/startScan",
+          "host": ["{{baseUrl}}"],
+          "path": ["startScan"]
+        }
+      }
+    },
+    {
+      "name": "Get Scan Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/getScanStatus",
+          "host": ["{{baseUrl}}"],
+          "path": ["getScanStatus"]
+        }
+      }
+    },
+    {
+      "name": "Get Scan Result",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fileFormat\": \"obj\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/getScanResult",
+          "host": ["{{baseUrl}}"],
+          "path": ["getScanResult"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
