@@ -20,7 +20,7 @@ import {
 
 interface StartScanBody {
   bodyPart: BodyPart;
-  side?: Side;
+  side: Side;
 }
 
 interface ScanResultBody {
@@ -57,7 +57,7 @@ export async function registerRoutes(app: FastifyInstance): Promise<void> {
           message: "Invalid or missing bodyPart."
         });
       }
-      if (body.side && !VALID_SIDES.includes(body.side)) {
+      if (!body.side || !VALID_SIDES.includes(body.side)) {
         return reply.status(400).send({
           success: false,
           errorCode: 1003,

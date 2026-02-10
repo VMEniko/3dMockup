@@ -16,7 +16,7 @@ export type DeviceStatus = "CONNECTED" | "NOT_CONNECTED";
 
 export interface ScanRequest {
   bodyPart: BodyPart;
-  side?: Side;
+  side: Side;
 }
 
 export interface ScanState {
